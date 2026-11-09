@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081424">
+  <meta name="description" content="Laboratorio financiero interactivo: Gradiente Conjugado Precondicionado para ajustes presupuestarios.">
+  <title>FinLab · Gradientes Conjugados y Finanzas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#inicio"><span class="logo">∑</span><span>FIN<span class="accent">LAB</span><small>UMSA · MÉTODOS NUMÉRICOS</small></span></a>
+    <nav id="nav" aria-label="Módulos del proyecto">
+      <a href="#inicio">01 Inicio</a><a href="#caso">02 Caso</a><a href="#formulacion">03 Formulación</a><a href="#entrada">04 Datos</a><a href="#escenarios">05 Escenarios</a><a href="#referencia">06 Referencia</a><a href="#metodos">07 GCP vs GC</a><a href="#errores">08 Errores</a><a href="#calidad">09 QA</a><a href="#conclusiones">10 Cierre</a>
+    </nav>
+    <a class="nav-cta" href="#entrada">Explorar ↗</a>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero wrap rubric-section">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="live"></span> MÓDULO 01 · INICIO <span class="tag">Datos simulados</span></div>
+        <h1>Decisiones financieras.<br><em>Matemática en acción.</em></h1>
+        <p>Aplicación del Método de Gradientes Conjugados Precondicionado para calcular ajustes presupuestarios coherentes en un pequeño café.</p>
+        <div class="hero-actions"><a href="#entrada" class="btn primary">Abrir simulador <span>↗</span></a><a href="#caso" class="btn ghost">Conocer el caso →</a></div>
+        <div class="byline">Universidad Mayor de San Andrés · Carrera de Informática<br>Neyzer Erick Canaviri Sandoval · Mención Desarrollo de Sistemas</div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-top"><span>AJUSTE FINANCIERO · EN VIVO</span><span class="green">● Cálculo local</span></div>
+        <div class="visual-amount" id="hero-total">Bs 0,00</div>
+        <div class="visual-muted">Suma de ajustes presupuestarios estimados</div>
+        <div id="hero-bars" class="hero-bars"></div>
+        <div class="visual-bottom"><span>04 categorías</span><span>Ax = b</span><span>GC vs GCP</span></div>
+      </div>
+    </section>
+
+    <section class="strip"><div class="wrap strip-inner"><span>RECORRIDO DE LA RÚBRICA</span><span>10 módulos verificables</span><span>3 escenarios obligatorios</span><span>5 pruebas ejecutables</span></div></section>
+
+    <section id="caso" class="section alt rubric-section">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">MÓDULO 02 / CASO DE ESTUDIO</div><h2>Ajustes presupuestarios de un pequeño café</h2><p>El negocio necesita distribuir cambios de presupuesto entre áreas relacionadas sin tratar cada partida como una decisión aislada.</p></div><span class="pill">Desarrollo de Sistemas</span></div>
+        <div class="case-grid">
+          <article class="panel"><h3>Contexto financiero</h3><p>Se modelan aumentos o reducciones respecto de un presupuesto base. El objetivo es acercarse a metas de cada área y, al mismo tiempo, evitar diferencias excesivas entre categorías vinculadas.</p><p>Las variables no representan el presupuesto total: cada unidad calculada equivale a <b>Bs 100 de ajuste</b>.</p></article>
+          <article class="panel"><h3>Procedencia y alcance de los datos</h3><p>Los coeficientes son <b>hipotéticos y académicos</b>; no provienen de registros contables. Se eligieron para construir matrices simétricas definidas positivas y estudiar la convergencia.</p><p>El modelo no incorpora liquidez, flujo de caja, impuestos ni restricciones de no negatividad.</p></article>
+        </div>
+        <h3 class="subsection-title">Variables financieras explícitas</h3>
+        <div class="variable-grid">
+          <div class="variable-card"><span>x₁</span><h3>Insumos y compras</h3><p>Ajuste destinado a materia prima, inventario y abastecimiento.</p></div>
+          <div class="variable-card"><span>x₂</span><h3>Gastos de operación</h3><p>Ajuste para servicios, alquiler, mantenimiento y operación cotidiana.</p></div>
+          <div class="variable-card"><span>x₃</span><h3>Innovación tecnológica</h3><p>Ajuste para software, equipos y mejora de procesos digitales.</p></div>
+          <div class="variable-card"><span>x₄</span><h3>Fondo de reserva</h3><p>Ajuste del respaldo para contingencias y variaciones inesperadas.</p></div>
+        </div>
+        <div class="mention-box"><div><div class="mini-label">APORTE ESPECÍFICO · DESARROLLO DE SISTEMAS</div><h3>Del modelo matemático a un producto web verificable</h3></div><ul><li>Arquitectura modular: interfaz, lógica numérica y pruebas separadas.</li><li>Componentes reactivos que recalculan tablas y gráficos al editar datos.</li><li>Validaciones de dimensión, simetría, definición positiva y parámetros.</li><li>Pruebas funcionales reproducibles tanto en navegador como en terminal.</li></ul></div>
+      </div>
+    </section>
+
+    <section id="formulacion" class="section wrap rubric-section">
+      <div class="section-head"><div><div class="kicker">MÓDULO 03 / FORMULACIÓN</div><h2>Del presupuesto al sistema Ax = b</h2><p>La misma estructura matemática se conserva en los tres escenarios; solo cambian, de forma justificada, los objetivos, pesos o acoplamientos.</p></div></div>
+      <div class="steps"><div class="step"><span>01</span><h3>Definir objetivos</h3><p>El vector t contiene el ajuste deseado para cada categoría, medido en centenas de bolivianos.</p></div><div class="step"><span>02</span><h3>Equilibrar prioridades</h3><p>Los pesos W priorizan áreas y las penalizaciones cᵢⱼ vinculan categorías relacionadas.</p></div><div class="step"><span>03</span><h3>Obtener el sistema</h3><p>Al imponer ∇J(x)=0 se obtiene (W+L)x=Wt; por tanto, A=W+L y b=Wt.</p></div></div>
+      <div class="formula-panel"><div><div class="mini-label">FUNCIÓN DE COSTO CUADRÁTICA</div><div class="formula">J(x) = ½(x − t)ᵀW(x − t) + ½Σ cᵢⱼ(xᵢ − xⱼ)²</div><p><b>Diagonal de A:</b> prioridad propia más vínculos de cada categoría. <b>Fuera de diagonal:</b> acoplamientos −cᵢⱼ. <b>Vector b:</b> objetivos ponderados.</p></div><div class="formula-explain"><h3>Demostración formal para los tres escenarios</h3><p><b>Simetría:</b> W=Wᵀ y el laplaciano L=Lᵀ; luego A=W+L=Aᵀ.</p><p><b>Definición positiva:</b> para cualquier y≠0:</p><div class="proof-formula">yᵀAy = Σ wᵢyᵢ² + Σ cᵢⱼ(yᵢ−yⱼ)² &gt; 0</div><p>Como todos los wᵢ son positivos y cᵢⱼ≥0, la propiedad se cumple en ideal, estrés y mal condicionado.</p></div></div>
+      <div class="proof-grid"><div class="panel"><h3>Sistema lineal del escenario activo</h3><div id="system-display" class="system-display"></div></div><div class="panel"><h3>Verificación numérica complementaria</h3><div id="proof" class="proof"></div></div></div>
+      <div class="note"><b>Interpretación:</b> modificar A manualmente permite experimentar, pero puede romper la estructura financiera W+L. Por eso la aplicación vuelve a comprobar simetría y Cholesky antes de ejecutar los métodos.</div>
+    </section>
+
+    <section id="entrada" class="section alt rubric-section">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">MÓDULO 04 / ENTRADA DE DATOS</div><h2>Editor interactivo del sistema</h2><p>Modifica A, b, x₀, tolerancia y máximo de iteraciones. Los resultados se actualizan automáticamente o al pulsar el botón.</p></div><div class="section-actions"><span class="pill">● Reactivo</span><button id="calculate" class="btn primary" type="button">∑ Calcular ahora</button></div></div>
+        <div class="lab-grid input-layout">
+          <div class="panel"><div class="panel-heading"><div><h3>Coeficientes y parámetros</h3><p>La matriz debe permanecer simétrica y definida positiva</p></div><button id="reset" class="subtle">↺ Restablecer</button></div><div class="input-top"><label>Tamaño del sistema <select id="dimension"><option value="4">4 variables</option><option value="5">5 variables</option><option value="6">6 variables</option><option value="7">7 variables</option><option value="8">8 variables</option></select></label><label>Precondicionador utilizado <select id="preconditioner"><option value="jacobi">Jacobi · M = diag(A)</option></select></label></div><div class="matrix-head"><span>MATRIZ A</span><span>VECTOR b</span></div><div class="matrix-edit"><div id="matrix-inputs" class="matrix-inputs"></div><div id="b-inputs" class="vector-inputs"></div></div><div class="input-top bottom-controls"><label>Tolerancia relativa <input id="tol" type="number" min="0.000000000001" max="0.1" step="any" value="0.000001"></label><label>Máx. iteraciones <input id="maxiter" type="number" min="1" max="10000" step="1" value="100"></label></div><div class="input-bottom"><div><span class="mini-label">VECTOR INICIAL x₀</span><div id="x0-inputs" class="x0-inputs"></div></div></div><div id="validation" class="validation" role="status" aria-live="polite"></div><p class="hint">La unidad financiera es Bs 100. Los controles aceptan dimensiones de 4 a 8 para mantener la visualización legible.</p></div>
+          <aside class="panel input-guide"><h3>Controles de ejecución</h3><div class="control-list"><div><span>A, b</span><p>Definen el sistema lineal que se resolverá.</p></div><div><span>x₀</span><p>Punto inicial común para GC y GCP.</p></div><div><span>10⁻⁶</span><p>Tolerancia exigida inicialmente por el desafío.</p></div><div><span>Nmáx</span><p>Límite seguro si no se alcanza la tolerancia.</p></div><div><span>Jacobi</span><p>Resuelve Mzₖ=rₖ dividiendo por la diagonal de A.</p></div></div></aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="escenarios" class="section wrap rubric-section">
+      <div class="section-head"><div><div class="kicker">MÓDULO 05 / TRES ESCENARIOS</div><h2>Ideal, estrés y mal condicionado</h2><p>Los botones cargan y ejecutan los casos obligatorios. Los resultados siguientes corresponden al escenario activo.</p></div></div>
+      <div class="scenarios" role="group" aria-label="Seleccionar escenario"><button class="scenario active" data-scene="ideal"><span class="scene-icon">◉</span><strong>Situación ideal</strong><small>A bien condicionada y objetivos estables</small></button><button class="scenario" data-scene="estres"><span class="scene-icon">↗</span><strong>Bajo estrés financiero</strong><small>Cambian metas por presión de costos</small></button><button class="scenario" data-scene="mal"><span class="scene-icon">≋</span><strong>Mal condicionado</strong><small>Escalas distintas y fuerte acoplamiento</small></button></div>
+      <div id="scenario-context" class="insight"></div>
+      <div class="metrics"><div class="metric"><span>Ajuste total</span><strong id="total-result">—</strong><small>Respecto al presupuesto base</small></div><div class="metric"><span>Iteraciones GCP</span><strong id="pcg-iterations">—</strong><small id="pcg-status">Convergencia</small></div><div class="metric"><span>Condición κ₂(A)</span><strong id="cond-result">—</strong><small>Menor suele ser mejor</small></div><div class="metric"><span>Residuo GCP</span><strong id="residual-result">—</strong><small>Objetivo &lt; tolerancia</small></div></div>
+      <div class="two-col"><div class="panel"><div class="panel-heading"><div><h3>Distribución de los ajustes</h3><p>Solución de referencia convertida a bolivianos</p></div></div><div id="budget-chart" class="budget-chart"></div><div id="budget-legend" class="budget-legend"></div></div><div class="panel"><div class="panel-heading"><div><h3>Interpretación financiera</h3><p>Lectura cualitativa del escenario activo</p></div></div><div id="interpretation" class="interpretation"></div></div></div>
+      <div class="panel comparison-panel"><h3>Tabla comparativa obligatoria</h3><p class="panel-intro">Valores calculados con la configuración original de cada escenario.</p><div class="table-scroll"><table class="comparison"><thead><tr><th>Indicador</th><th>Ideal</th><th>Bajo estrés</th><th>Mal condicionado</th></tr></thead><tbody id="comparison-table"></tbody></table></div></div>
+    </section>
+
+    <section id="referencia" class="section alt rubric-section">
+      <div class="wrap"><div class="section-head"><div><div class="kicker">MÓDULO 06 / SOLUCIÓN DE REFERENCIA</div><h2>Cholesky como método directo</h2><p>Para cada escenario se factoriza A=LLᵀ y se resuelven Ly=b y Lᵀx=y. El resultado se denomina solución numérica de referencia.</p></div></div>
+        <div class="reference-grid"><div class="method-card reference-card"><span class="dot gray"></span><h3>Vector xref del escenario activo</h3><div class="method-badge">Método directo · Cholesky</div><div id="ref-vector" class="vector-result large">—</div><p>Se usa para calcular los errores del GCP componente por componente.</p></div><div class="panel"><h3>Secuencia del método</h3><ol class="method-steps"><li>Comprobar que A es simétrica definida positiva.</li><li>Construir la matriz triangular inferior L.</li><li>Resolver la sustitución hacia adelante Ly=b.</li><li>Resolver la sustitución hacia atrás Lᵀx=y.</li><li>Verificar el residuo ||b−Axref||₂/||b||₂.</li></ol></div></div>
+      </div>
+    </section>
+
+    <section id="metodos" class="section wrap rubric-section">
+      <div class="section-head"><div><div class="kicker">MÓDULO 07 / GCP VS GC</div><h2>Convergencia iterativa y precondicionamiento</h2><p>GC funciona como contraste. GCP aplica Jacobi, M=diag(A), para evaluar si mejora la velocidad de convergencia.</p></div></div>
+      <div class="algorithm-panel"><div><div class="mini-label">ALGORITMO GCP IMPLEMENTADO</div><h3>Iteración de Suñagua (2020)</h3><p>Inicio: x₀ elegido, r₀=b−Ax₀, resolver Mz₀=r₀ y tomar p₀=z₀.</p></div><div class="algorithm-steps"><code>αₖ = (rₖᵀzₖ) / (pₖᵀApₖ)</code><code>xₖ₊₁ = xₖ + αₖpₖ</code><code>rₖ₊₁ = rₖ − αₖApₖ</code><code>Mzₖ₊₁ = rₖ₊₁</code><code>βₖ = (rₖ₊₁ᵀzₖ₊₁) / (rₖᵀzₖ)</code><code>pₖ₊₁ = zₖ₊₁ + βₖpₖ</code></div><div class="stop-rule"><span>CRITERIO DE PARADA</span><strong>||b−Axₖ||₂ / ||b||₂ &lt; 10⁻⁶</strong><small>o alcanzar Nmáx iteraciones</small></div></div>
+      <div class="method-cards two-methods"><div class="method-card"><span class="dot orange"></span><h3>Gradiente Conjugado</h3><div class="method-badge">GC · Sin precondicionar</div><div id="cg-vector" class="vector-result">—</div><p id="cg-info">—</p></div><div class="method-card focus"><span class="dot teal"></span><h3>Gradiente Conjugado Precondicionado</h3><div class="method-badge">GCP · Jacobi</div><div id="pcg-vector" class="vector-result">—</div><p id="pcg-info">—</p></div></div>
+      <div class="panel chart-panel"><div class="panel-heading"><div><h3>Convergencia por iteración</h3><p>Residuo relativo ||b−Axₖ||₂/||b||₂ · escala logarítmica</p></div><button id="animate" class="subtle">▶ Reproducir recorrido</button></div><div id="residual-chart" class="residual-chart"></div><div id="iteration-caption" class="iteration-caption">—</div></div>
+    </section>
+
+    <section id="errores" class="section alt rubric-section">
+      <div class="wrap"><div class="section-head"><div><div class="kicker">MÓDULO 08 / ERRORES Y CONDICIONAMIENTO</div><h2>Precisión por variable y diagnóstico global</h2><p>Se comparan GCP y la referencia mediante error absoluto, relativo, porcentual, residuo y números de condición.</p></div></div>
+        <div class="error-definitions"><div><span>Ea,i</span><code>|xref,i − xGCP,i|</code></div><div><span>Er,i</span><code>Ea,i / |xref,i|</code></div><div><span>Ep,i</span><code>100 × Er,i</code></div><div><span>Residuo</span><code>||b−AxGCP||₂ / ||b||₂</code></div></div>
+        <div class="two-col"><div class="panel"><h3>Errores por categoría</h3><div class="table-scroll"><table><thead><tr><th>Categoría</th><th>x ref.</th><th>x GCP</th><th>Abs.</th><th>Rel.</th><th>%</th></tr></thead><tbody id="errors-table"></tbody></table></div><p class="hint">Si una componente de referencia vale cero, el error relativo se reporta como no definido.</p></div><div class="panel"><h3>Diagnóstico numérico</h3><div id="diagnostics" class="diagnostics"></div><div id="numerical-conclusion" class="insight small"></div></div></div>
+      </div>
+    </section>
+
+    <section id="calidad" class="section wrap rubric-section">
+      <div class="section-head"><div><div class="kicker">MÓDULO 09 / PRUEBAS DE SOFTWARE QA</div><h2>Verificación ejecutable</h2><p>Cada caso muestra entrada, resultado esperado, resultado obtenido y conclusión usando los algoritmos reales.</p></div><button id="run-tests" class="btn primary">▶ Ejecutar pruebas</button></div>
+      <div class="panel"><div id="qa-summary" class="qa-summary">Pruebas aún no ejecutadas.</div><div class="table-scroll"><table><thead><tr><th>Caso</th><th>Entrada</th><th>Esperado</th><th>Obtenido</th><th>Conclusión</th></tr></thead><tbody id="qa-table"><tr><td colspan="5">Pulsa «Ejecutar pruebas» para obtener resultados reales.</td></tr></tbody></table></div></div>
+      <div class="qa-notes"><div><b>QA-01</b><span>Carga de los tres escenarios.</span></div><div><b>QA-02</b><span>Matrices no simétricas o no SPD.</span></div><div><b>QA-03</b><span>Edición y recálculo inmediato.</span></div><div><b>QA-04</b><span>Ganancia del precondicionamiento.</span></div><div><b>QA-05</b><span>Caso límite con vector b nulo.</span></div></div>
+    </section>
+
+    <section id="conclusiones" class="section alt rubric-section">
+      <div class="wrap"><div class="section-head"><div><div class="kicker">MÓDULO 10 / CONCLUSIONES Y REFERENCIAS</div><h2>Lectura técnica y financiera</h2></div></div>
+        <div class="steps"><div class="step"><span>IDEAL</span><h3>Equilibrio presupuestario</h3><p>Los ajustes se aproximan a las prioridades y mantienen coherencia entre categorías relacionadas.</p></div><div class="step"><span>ESTRÉS</span><h3>Los objetivos desplazan la solución</h3><p>Cambiar b modifica los ajustes; si A permanece igual, su condicionamiento no cambia.</p></div><div class="step"><span>CONDICIÓN</span><h3>La estabilidad importa</h3><p>El caso extremo muestra por qué deben analizarse residuos, errores y la utilidad real del precondicionador.</p></div></div>
+        <div class="conclusion-box"><h3>Conclusión general</h3><p>El GCP produce soluciones consistentes con la referencia cuando A es simétrica definida positiva. Jacobi puede reducir las iteraciones si el problema dominante es el escalamiento diagonal, pero no garantiza una mejora universal ante acoplamientos fuertes. Financiera y éticamente, estos resultados son sugerencias condicionadas por un modelo académico, no órdenes automáticas de gasto.</p></div>
+        <div class="references"><h3>Referencias y procedencia</h3><p>Suñagua S., P. (2020). <i>Método de Gradientes Conjugados Precondicionado</i>. Revista Boliviana de Matemática – UMSA, 04, 2–7.</p><p>Golub, G. H. &amp; Van Loan, C. F. (2013). <i>Matrix Computations</i> (4.ª ed.). Johns Hopkins University Press.</p><p>Saad, Y. (2003). <i>Iterative Methods for Sparse Linear Systems</i> (2.ª ed.). SIAM.</p><p><b>Fuente de datos:</b> escenarios hipotéticos elaborados con fines académicos; no son registros contables de una empresa.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span><b>∑ FINLAB</b> · Métodos Numéricos / UMSA · Desarrollo de Sistemas</span><a href="#inicio">Volver arriba ↑</a></div></footer>
+  <script src="numerics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
